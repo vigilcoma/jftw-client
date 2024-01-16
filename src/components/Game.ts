@@ -34,6 +34,7 @@ class Game extends Hooks {
     selectFilter: ColorMatrixFilter | null = null;
     alphaFilter: AlphaFilter | null = null;
 
+    state: "started" | "ended" | "idle" = "idle";
     
 
     textStyle = new TextStyle({
@@ -93,6 +94,10 @@ class Game extends Hooks {
     }
 
     start() {
+        if(this.state == "started") {
+            this.end();
+        }
+        
         for (let i = 0; i < this.itemsAmount; i++) {
             const sprite = this.symbols[i].view;
 
@@ -119,6 +124,8 @@ class Game extends Hooks {
         this.updateSeletedModel();
 
         this.updateSeletedText();
+
+        this.state = "started";
     }
 
     submit() {
@@ -156,6 +163,8 @@ class Game extends Hooks {
     }
 
     end() {
+        this.state = "ended";
+
         for (let i = 0; i < this.itemsAmount; i++) {
             const sprite = this.symbols[i].view;
             sprite.filters = [];

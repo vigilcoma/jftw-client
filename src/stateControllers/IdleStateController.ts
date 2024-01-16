@@ -24,6 +24,12 @@ class IdleStateController extends BaseStateController {
     onNewRoundStart() {
         this.done();
     }
+
+    async onExit(): Promise<void> {
+        await super.onExit();
+
+        GameStorage.getComponent(Components.GAME).submit();
+    }
 }
 
 export {IdleStateController}

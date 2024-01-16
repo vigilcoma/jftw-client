@@ -38,6 +38,10 @@ window.onload = async (): Promise<void> => {
     height: gameHeight
   });
 
+  const urlParams = new URLSearchParams(window.location.search);
+  const balance = urlParams.get('balance') || 10;
+  Model.write("balance", balance);
+
   const stage = app.stage;
   const rootViewScene = new RootViewScene(stage);
   GameStorage.setRootStage(rootViewScene);

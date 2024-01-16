@@ -40,6 +40,10 @@ class UI extends Hooks {
         });
 
         Model.registerHook("state", (data: UpdateHookData<string>) => {
+            if(data.prev == States.ROUND_CHECK && data.current == States.IDLE) {
+                alert("Out of money!");
+            }
+            
             this.handleStartButtonActivation();
         });
 

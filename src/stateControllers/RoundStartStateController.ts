@@ -19,8 +19,6 @@ class RoundStartStateController extends BaseStateController {
 
         this.model.write("balance",  currentBalance - currentBet);
 
-        GameStorage.getComponent(Components.GAME).submit();
-
         this.doRequest();
     };
 
